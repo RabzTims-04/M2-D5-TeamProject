@@ -35,6 +35,13 @@ h6{
 
 .dropdown-item{
   color: white;
+  padding: 0.45rem 1rem;
+}
+
+.dropdown-toggle:hover{
+  background-color:black;
+  color: white;
+  box-shadow: 2px 0 20px 2px rgba(255, 255, 255,0.15 );
 }
 
 .dropdown-item:hover{
@@ -121,18 +128,173 @@ h6{
 }
 .scroller {
   overflow-x: scroll;
-  scroll-behavior:initial;
-  
+  scroll-behavior:initial;  
 }
 
 .scroller::-webkit-scrollbar {
   display: none;
 }
-/* .scroller::-webkit-scrollbar-button{
-  background: red;
-  border-radius: 10px;
+
+body{
+  font-size: small;
+  line-height: 95%;
+}
+
+.navbarLogo {
+  width: 100px;
+}
+
+.bg-Color {
+  color: white;
+  background-color: rgb(20, 20, 20);
+}
+
+.avatar {
+  width: 30px;
+}
+.kidsIcon{
+  width: 30px;
+}
+
+.bell {
+  color: white;
+  align-items: center;
+
+}
+
+#navbarIcon1 {
+  align-items: flex-end;
+  color: white;
+}
+
+.icon1 {
+  color: white;
+  left: 00px;
+}
+
+.icon {
+  left: 1050px;
+  top: 27px;
+  bottom: 0px;
+  
+}
+
+.icon2 {
+  left: 1100px;
+  top: 27px;
+}
+.userDropdown{
+  background-color: rgb(20, 20, 20);
+  color:white
+}
+.addUser{
+  color: white;
+  text-align: center;  
+}
+
+h3 {
+  padding: 10px;
+}
+.img-main {
+  width: 200px;
+  margin: 20px;
+}
+h1 {
+  color: rgb(212, 4, 4);
+  font-family: Bebas Neue;
+  font-weight: bold;
+  align-self: center;
+}
+.jumbotron {
+  background-color: #141414;
+}
+.dropdown-menu-dark {
+  background-color: #0e0e0e
+}
+.footer {
+  background-color: #0e0e0e;
+  margin-bottom: 0%;
+  /* margin-top: 50px; */
+  color: grey;
+  padding-bottom: 10px;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: inherit;
+  width: 100%;
+  background-color: black;
+}
+
+.main_footer_div {
+  text-align: left;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.copyright-footer{
+text-align: left;
+font-size: 10px;
+justify-content: center;
+}
+
+.fa-cog {
+  color: black;
+}
+.footer_icon {
+  background-color: black;
+  color: grey;
+  padding-top: 5px;
+  padding-bottom: 10PX;
+}
+.fab {
+  margin-left: 15px;
+}
+.row_footer {
+  padding-left: 50px;            
+}
+
+.footer-button{
+background-color: transparent;
+color: grey;
+font-size: xx-small;
+border:1px solid grey;
+height:23px;
+width: 64px; 
+} 
+
+.btn:hover{
+color: white;
+box-shadow: 2px 0 20px 2px rgba(255, 255, 255,0.15 );
+}
+
+/* .column_game {
+  padding-right: 70px;
 } */
 
-/* .scroller::-webkit-scrollbar-button:single-button:horizontal:decrement {
-border-color: transparent transparent #9b6a2f transparent;
-} */
+.column_game p:hover{
+color: rgb(206, 190, 190);
+}
+
+.footer-copyright{
+color: grey;
+font-size: xx-small;
+padding-left: 14.5rem;
+
+}
+
+.column_game p{
+margin: 0%;
+}
+
+@media only screen and (max-width: 400px) {
+  .icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-color: black;
+  }
+}
