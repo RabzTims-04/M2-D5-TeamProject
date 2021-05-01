@@ -1,32 +1,221 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="profile.css">
-    <title>Netflix</title>
-  </head>
-  <body>
-
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link href="profile.css" rel="stylesheet">
+        <title>Netflix</title>
+      </head>
+<body>
 
     
+   <!-- Navbar -->
+
+   <nav class=" navbar navbar-expand-lg navbar-dark bg-Color ">
+    <img src="assets/netflix_logo.png" alt="logo" class="navbarLogo">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link active" href="D5.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">TV Shows</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Movies</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Recently Added</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">MyList</a>
+        </li>             
+      </ul>
+     <div class="d-flex align-items-center">
+      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+        class="bi bi-search" viewBox="0 0 16 16">
+        <path
+          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+      </svg></a>
+      <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+        height="16" fill="currentColor" class="bi bi-bell-fill bell  align-items-center px-30"
+        viewBox="0 0 16 16">
+        <path
+          d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+      </svg></a>
+     
+       
+          <a href="#" >
+            <div class="nav-item dropdown justify-content-end ml-auto nav-link">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="assets/avatar.png" alt="" class="avatar">
+              </a>
+  
+              <div  class="dropdown-menu userDropdown" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item p-0" href="#">
+                    <a href="profile.html" class="addUser" style="text-decoration:none;">Kids</a><img class="kidsIcon ml-5" src="assets/kids_icon.png" alt="kidsIcon">
+                </a>
+                <br>
+                <a style="text-decoration:none;" class="addUser"href="#">Add User</a>
+              </div>
+          </a>
+     </div>
+      
+    </div>
+  </nav>
+
    
 
-    <!-- Optional JavaScript; choose one of the two! -->
+  <div class="container-fluid">
 
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+     <!-- First Row -->
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-    -->
-  </body>
+     <div>
+
+      <div class="row justify-content-center">
+          <div class="col-4  d-none d-md-block bottom-margin"><h1>Edit Profile</h1>
+        </div>
+    </div>
+
+        <div class="row justify-content-center">
+            <div class="col-4 d-none d-sm-block d-md-none bottom-margin"><h1 style="font-size: x-large;">Edit Profile</h1>
+          </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-4 d-sm-none bottom-margin"><h1 style="font-size:large;">Edit Profile</h1>
+      </div>
+  </div>
+
+    </div>
+    
+    <!-- Second Row -->
+
+    <div class="row justify-content-center mt-0"> 
+        <div class="col-4 mt-0 pt-0">
+            <hr>
+            <div class="row justify-content-center">
+            <div class="col-4">
+                <img src="assets/avatar.png" id="avatar-logo" class="img-fluid" alt="">
+            </div>
+            <div class="col-8 pl-0">
+                <form>
+                    <input type="text" class="name" placeholder="Name">                    
+                    <br>
+                    <br>
+                    <br>
+                
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">Language:</label>
+                    <br>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>Select</option>
+                        <option value="1">English</option>
+                        <option value="2">German</option>
+                        <option value="3">Arabic</option>
+                    </select>                  
+                </form>
+
+                <hr>
+
+                <h6>Maturity Settings:</h6>
+
+                <button class="maturbutton" type="button">ALL MATURITY RATINGS</button>
+                <br>
+                <br>
+                <p>Show titles of all maturity ratings for this profile.</p>
+                <button class="edit-button btn bg-transparent" type="button">EDIT</button>
+                <hr>
+                <h6>Autoplay controls</h6>
+                <form>
+                    <input type="checkbox"id="play">
+                    <label class="form-check-label" for="play">Autoplay next episode in a series on all devices</label>
+                    <input type="checkbox" id="playpreview">
+                    <label class="form-check-label" for="playpreview">Autoplay previews while browsing on all devices</label>
+                  </form>
+            </div>
+            
+            <div>                
+            </div>         
+        </div>
+        <hr>
+        <div class="row no-gutters justify-content-center">
+           
+            <div class="col-3">
+                <button class="save-button btn" type="button">SAVE</button>
+            </div>
+
+            <div class="col-3">
+                <button class="cancel-button btn" type="button">CANCEL</button>
+            </div>
+
+            <div class="col-6">
+                <button class="delete-button btn" type="button">DELETE PROFILE</button>
+            </div>
+
+        </div>            
+        </div>
+    </div>
+
+
+   
+<!-- <div class="container-fluid">
+    <div class="row justify-content-center">
+        <h1 class="center">Edit Profile</h1>
+        
+        <div class="col-4">
+            <hr>
+            <div class="row justify-content-center">
+            <div class="col-6">
+                <img src="avatar.png" id="avatar-logo" class="img-fluid" alt="">
+            </div>
+            <div class="col-6">
+                <form action="">
+                    <input type="text" name="" id="">
+                    <label for="language">Language:</label>
+                    <br>
+                    <select name="language" id="language">
+                        <option value="en">English</option>
+                        <option value="de">German</option>
+                        <option value="ar">Arabic</option>
+                    </select>
+                </form>
+                <hr>
+                <h5>Maturity Settings:</h5>
+                <button type="button">ALL MATURITY RATINGS</button>
+                <br>
+                <p>Show titles of all maturity ratings for this profile</p>
+                <button type="button">EDIT</button>
+                <hr>
+                <h5>Autoplay Controls</h5>
+                <input type="checkbox" name="play" id="play">
+                <label for="play">Autoplay next episode in a series on all devices</label>
+                <input type="checkbox" name="playpreview" id="playpreview">
+                <label for="playpreview">Autoplay previews while browsing on all devices</label>
+            </div>
+            <hr>
+            <div>
+                <button type="button" class="btn btn-primary btn-sm">Small button</button>
+                <button type="button" class="btn btn-secondary btn-sm">Small button</button>
+                <button type="button" class="btn btn-primary btn-sm">Small button</button>
+                
+            </div>
+           
+        </div>
+            
+        </div>
+    </div>
+</div> -->
+   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+</body>
 </html>
