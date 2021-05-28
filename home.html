@@ -37,9 +37,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">MyList</a>
           </li>
-          
-          
-           
+          <li class="nav-item">
+            <a class="nav-link" href="./backoffice.html">Form</a>
+          </li>
         </ul>
        <div class="d-flex align-items-center">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -116,12 +116,13 @@
     <div class="container-fluid">
       <div class="mt-1">
         <h6 class="d-inline pl-3">
-          Trending Now
+          Horror
         </h6>
+
       </div>
       <div class="scroller mt-1">
-        <div class="infinite-row">
-            <div class="infinite-row-element">
+        <div id="horror" class="infinite-row">
+   <!--     <div class="infinite-row-element">
                 <img class=" imagetransition img-fluid" src="assets/media/media0.webp">
             </div>
             <div class="infinite-row-element">
@@ -150,7 +151,7 @@
         </div>
         <div class="infinite-row-element">
           <img class="imagetransition img-fluid" src="assets/media/media23.webp">
-      </div>
+      </div> -->
         </div>
     </div>
   
@@ -158,13 +159,13 @@
 
     <div class="mt-4">
       <h6 class="d-inline pl-3">
-        Watch It Again
+        Romance
       </h6>
     </div>
 
     <div class="scroller mt-1">
-      <div class="infinite-row">
-          <div class="infinite-row-element">
+      <div id="romance" class="infinite-row">
+          <!-- <div class="infinite-row-element">
               <img class="imagetransition img-fluid" src="assets/media/media7.webp">
           </div>
           <div class="infinite-row-element">
@@ -193,19 +194,19 @@
       </div>
       <div class="infinite-row-element">
         <img class="imagetransition img-fluid" src="assets/media/media26.webp">
-    </div>
+    </div> -->
       </div>
   </div>
 
   <div class="mt-4">
     <h6 class="d-inline pl-3">
-      New Releases
+      Sci-Fi
     </h6>
   </div>
 
   <div class="scroller mt-1">
-    <div class="infinite-row">
-        <div class="infinite-row-element">
+    <div id="Sci-Fi" class="infinite-row">
+        <!-- <div class="infinite-row-element">
             <img class="imagetransition img-fluid" src="assets/media/media14.webp">
         </div>
         <div class="infinite-row-element">
@@ -234,7 +235,7 @@
     </div>
     <div class="infinite-row-element">
       <img class="imagetransition img-fluid" src="assets/media/media29.jpg">
-  </div>
+  </div> -->
     </div>
 </div>
 
@@ -325,15 +326,94 @@
                 </div>
                 <div class="col-9 col-sm-6 col-md-4 col-lg-4 ml-4 justify-content-left"><p style="font-size: 8px;">&copy 1997-2019 Netflix, Inc.(2373480038)</p> </div> 
             </div>
-        </div>
-       
-  
+        </div>      
     </footer>
-   
-    
 
+    <script>
 
-     
+      window.onload = async ()=>{
+        const url = "https://striveschool-api.herokuapp.com/api/movies/"
+        const horrorContainer = document.getElementById('horror')
+        const romanceContainer = document.getElementById('romance')
+        const sciFiContainer = document.getElementById('Sci-Fi') 
+        const key = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGFlNDE0YWNlYWY0ODAwMTVjOTE4NzAiLCJpYXQiOjE2MjIyMDkzNTIsImV4cCI6MTYyMzQxODk1Mn0.2Y6pQr7mBhh-iDxdgL36pX6YZIH3zM05iJueyxH0h8w'
+
+        try {
+          const horrorResponse = await fetch(url + 'Horror', {
+            method: 'GET',
+            headers : {
+              "Authorization": key
+            }
+          }) 
+          const romanceResponse = await fetch(url + 'Romance', {
+            method: 'GET',
+            headers : {
+              "Authorization": key
+            }
+          }) 
+           const scifiResponse = await fetch(url + 'scifi', {
+            method: 'GET',
+            headers : {
+              "Authorization": key
+            }
+          }) 
+          
+          const horrormovieInfo = await horrorResponse.json()
+          console.log(horrormovieInfo);
+          const romancemovieInfo = await romanceResponse.json()
+          console.log(romancemovieInfo);
+          const scifimovieInfo = await scifiResponse.json()
+          console.log(scifimovieInfo);
+
+          /* HORROR */
+         
+            if(horrormovieInfo.length > 0){
+            horrormovieInfo.forEach((info)=>{
+              horrorContainer.innerHTML += `<div class="infinite-row-element">
+                                                <a href = "./detail.html?id=${info._id}"><img class=" imagetransition img-fluid" src="${info.imageUrl}"></a>
+                                            </div>`
+            })
+          }else{
+            horrormovieInfo.innerHTML = `<div class="alert alert-info" role="alert">
+                                No movies yet!
+                              </div>`
+          }         
+         
+          /* ROMANCE */
+
+          if(romancemovieInfo.length > 0){
+            romancemovieInfo.forEach((info)=>{
+              romanceContainer.innerHTML += `<div class="infinite-row-element">
+                                                <a href = "./detail.html?id=${info._id}"><img class=" imagetransition img-fluid" src="${info.imageUrl}"></a>
+                                            </div>`
+            })
+          }else{
+            romanceContainer.innerHTML = `<div class="alert alert-info" role="alert">
+                                No movies yet!
+                              </div>`
+          }
+          /* SCIFI */
+
+          if(scifimovieInfo.length > 0){
+            scifimovieInfo.forEach((info)=>{
+              sciFiContainer.innerHTML += `<div class="infinite-row-element">
+                                                <a href = "./detail.html?id=${info._id}"><img class=" imagetransition img-fluid" src="${info.imageUrl}"></a>
+                                            </div>`
+            })
+          }else{
+            sciFiContainer.innerHTML = `<div class="alert alert-info" role="alert">
+                                No movies yet!
+                              </div>`
+          }
+
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      
+
+    </script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <!-- <script src="js/script.js"></script> -->
