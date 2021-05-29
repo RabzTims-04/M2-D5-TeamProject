@@ -76,8 +76,24 @@ h3 {
 }
 
  
+/* .main-profile{
+    padding: 2% 35%;
+} */
+
 .main-profile{
     padding: 2% 35%;
+}
+
+@media screen and (max-width: 1000px) {
+    .main-profile{
+        padding: 2% 20%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main-profile{
+        padding: 2% 10%;
+    }
 }
 
 .profile-h1{

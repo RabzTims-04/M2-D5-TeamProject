@@ -84,32 +84,41 @@
     <!-- Second Row -->
 
     <div class="row"> 
-        <div class="col-md-3 col-xs-12">
+        <div class="col-12 col-sm-3 text-center">
             <img src="assets/avatar.png" id="avatar-logo" class="img-fluid" alt="">
         </div>           
-        <div class="col-md-9 col-xs-12">
-            <input type="text" class="name mb-4 mt-1 w-100" placeholder="Name">            
-            <div class="d-flex flex-column">
-                <label class="mr-sm-2" for="inlineFormCustomSelect">Language:</label>
-                <select class="custom-select mr-sm-2 w-50" id="inlineFormCustomSelect">
+        <div class="col-12 col-sm-9">
+          <div class="text-center text-sm-left">
+            <input type="text" class="name mb-4 mt-1" placeholder="Name"> 
+          </div>                      
+            <div class="d-flex flex-column text-center text-sm-left">
+                <label class="mr-sm-2 text-center text-sm-left" for="inlineFormCustomSelect">Language:</label>
+                <div>
+                  <select class="custom-select mr-sm-2 w-50" id="inlineFormCustomSelect">
                     <option selected>Select</option>
                     <option value="1">English</option>
                     <option value="2">German</option>
                     <option value="3">Arabic</option>
                 </select> 
+                </div>               
             </div>                
             <hr>
-            <div class="d-flex flex-column mt-2">
-                <h6>Maturity Settings:</h6>
-                <button class="maturbutton" type="button">ALL MATURITY RATINGS</button>
-                <p class="mt-2">Show titles of all maturity ratings for this profile.</p>
-                <button class="edit-button btn bg-transparent" type="button">EDIT</button>
+            <div class="d-flex flex-column mt-2 text-center text-sm-left">
+                <h6 class="">Maturity Settings:</h6>
+                <div>
+                  <button class="maturbutton" type="button">ALL MATURITY RATINGS</button>
+                </div>
+               
+                <p class="mt-2 ">Show titles of all maturity ratings for this profile.</p>
+                <div>
+                  <button class="edit-button btn bg-transparent align-items-center" type="button">EDIT</button>
+                </div>                
             </div>
             <hr>
-                <h6>Autoplay controls</h6>
+                <h6 class="text-center text-sm-left">Autoplay controls</h6>
                 <div class="row ml-2">
-                    <div class="col-md-1">
-                        <input type="checkbox" class="form-check-input btn-secondary">
+                    <div class="col-md-1 ">
+                        <input type="checkbox" class="form-check-input btn-secondary ">
                     </div>
                     <div class="col-md-11 label w-100">
                         Autoplay next episode in a series on all devices
