@@ -10,6 +10,17 @@
     <link href="style.css" rel="stylesheet">
     <title>Netflix</title>
     <style>
+        body{
+            background-color: black;
+        }
+
+        h1{
+            color: white;
+        }
+         p{
+             color: white;
+         }
+
         .submit-button:hover{
             background-color: red;
             border-color: transparent;
@@ -23,6 +34,47 @@
         .trash:hover{
             color: red;
         }
+
+        hr{
+            background-color: red;
+        }
+
+        .badge-pill{
+            padding: 0.5rem 4rem;
+        }
+
+        .badge-pill:hover{
+            color: black;
+            text-decoration: none;
+        }
+
+        .jumbotron{
+            padding-top: 2rem!important;
+            padding-bottom: 2rem!important;
+        }
+
+        .category{
+            font-size: 2.25rem;
+        }
+
+        .description{
+            line-height: 2rem;
+        }
+
+        .home-btn:hover{
+            background-color: white;
+            color: black;
+        }
+
+        .home-btn{
+            width:18%; 
+            border: 1px solid grey; 
+            color:grey
+        }
+
+        .edit-btn:hover{
+            color: black;
+        }      
     </style>
   </head>
   <body>
@@ -33,18 +85,8 @@
         <a href="home.html"><img src="assets/netflix_logo.png" alt="logo" class="navbarLogo"></a>
     </nav>
 
-    <!-- Details -->
-      <div class="container mt-3">
-        <div class="jumbotron">
-           <!--  <h1 class="display-4">Hello, world!</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
-          </div>
-      </div>
-
-     <div class="container d-flex justify-content-center">
+    
+    <div class="container d-flex justify-content-center mt-3">
         <div class="card bg-dark text-white">
            <!--  <img src="..." class="card-img" alt="...">
             <div class="card-img-overlay">
@@ -55,95 +97,87 @@
           </div>
      </div>
 
+    <!-- Details -->
+      <div class="text-center mt-3">
+        <div class="jumbotron">
+           <!--  <h1 class="display-4">Hello, world!</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+          </div>
+      </div>
+
+
     <!-- script -->
 
     <script>
         const url = "https://striveschool-api.herokuapp.com/api/movies/"
         const urlSearch = new URLSearchParams(window.location.search)
         let movieId = urlSearch.get('id')
+        let category = urlSearch.get('category')
+        const jumbotron = document.querySelector('.jumbotron')
+        const card = document.querySelector('.card')
+        console.log(category);
         console.log(movieId);
         const key = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGFlNDE0YWNlYWY0ODAwMTVjOTE4NzAiLCJpYXQiOjE2MjIyMDkzNTIsImV4cCI6MTYyMzQxODk1Mn0.2Y6pQr7mBhh-iDxdgL36pX6YZIH3zM05iJueyxH0h8w'
 
-        window.onload = async function(){
-            const jumbotron = document.querySelector('.jumbotron')
-            const card = document.querySelector('.card')
-
+        const movieFetch = async (category ="") =>{
             try {
-                const horrorResponse = await fetch(url + 'Horror/', {
+                const response = await fetch(url + category, {
                     method: 'GET',
                     'headers': {
                     "Authorization": key
                 }
             })
+            const movieData = await response.json()
+            return movieData
+        }catch(error){
+            console.log(error);
+        }
+    }
 
-            const romanceResponse = await fetch(url + 'Romance/', {
-                    method: 'GET',
-                    'headers': {
-                    "Authorization": key
-                }
-            })
-
-            const scifiResponse = await fetch(url + 'scifi/', {
-                     method: 'GET',
-                    'headers': {
-                    "Authorization": key
-                }
-            })
-
-       
-
-           
-
+    const jumbotronContainer = async (data) =>{
+        try {            
+            const requiredMovie = await data.find(movie => movie._id.includes(movieId))
+                jumbotron.innerHTML = `<h1 class="display-4 mb-3 d-inline-block mr-4">${requiredMovie.name}</h1>
+                                        <span class="lead text-light d-inline-block mr-4"> — </span>
+                                        <p class="lead text-danger font-weight-normal category d-inline-block">${requiredMovie.category}</p>                                       
+                                        <p class="lead description">${requiredMovie.description}</p>
+                                        <hr class="mt-5 mb-5">
+                                        <div class="d-flex justify-content-around">
+                                        <a onclick="editButton()" class="btn btn-danger edit-btn" href="#" role="button">EDIT</a>
+                                        <a class="btn home-btn" href="./home.html" role="button">BACK TO HOME PAGE</a>
+                                        </div>`
+                card.innerHTML = `<img src="${requiredMovie.imageUrl}" class="card-img" alt="...">`
             
-    
-                const [horrormovieData,romancemovieData,scifimovieData]  = await Promise.all([horrorResponse.json(), romanceResponse.json(),scifiResponse.json()])
-                /* const romancemovieData = await romanceResponse.json()
-                const scifimovieData = await scifiResponse.json()
-                console.log(horrormovieData); */
-                /* await Promise.all(horrormovieData,romancemovieData,scifimovieData) */
+        } catch (error) {
+            console.log(error);            
+        }
+    }
 
-                const requiredMovie = horrormovieData.find(movie => movie._id.includes(movieId))
-                console.log(requiredMovie);
-                jumbotron.innerHTML = `<h1 class="display-4">${requiredMovie.name}</h1>
-                                        <p class="lead">${requiredMovie.category}</p>
-                                        <hr class="my-4">
-                                        <p>${requiredMovie.description}</p>
-                                        <a onclick="editButton()" class="btn btn-primary btn-lg" href="#" role="button">EDIT</a>`
-                card.innerHTML = `<img src="${requiredMovie.imageUrl}" class="card-img" alt="...">`  
-         
+        window.onload = async function(){  
             
-
-        
-                
-                console.log(romancemovieData);
-                const requiredromMovie =  romancemovieData.find(movie => movie._id.includes(movieId))
-                jumbotron.innerHTML = `<h1 class="display-4">${requiredromMovie.name}</h1>
-                                        <p class="lead">${requiredromMovie.category}</p>
-                                        <hr class="my-4">
-                                        <p>${requiredromMovie.description}</p>
-                                        <a onclick="editButton()" class="btn btn-primary btn-lg" href="#" role="button">EDIT</a>`
-                card.innerHTML = `<img src="${requiredromMovie.imageUrl}" class="card-img" alt="...">`
-          
-            
-
-          
+            if(category === 'Horror'){
+               const horrorMovie = await movieFetch('Horror')
+               console.log(horrorMovie);
+               jumbotronContainer(horrorMovie)
                
-                jumbotron.innerHTML = `<h1 class="display-4">${scifimovieData.name}</h1>
-                                        <p class="lead">${scifimovieData.category}</p>
-                                        <hr class="my-4">
-                                        <p>${scifimovieData.description}</p>
-                                        <a onclick="editButton()" class="btn btn-primary btn-lg" href="#" role="button">EDIT</a>`
-                card.innerHTML = `<img src="${scifimovieData.imageUrl}" class="card-img" alt="...">`
-        
+            }
 
-            } 
-            catch (error) {
-                console.log(error);
+            if(category === 'Romance'){
+               const romanceMovie =await movieFetch('Romance')
+               jumbotronContainer(romanceMovie)
+            }
+
+            if(category === 'scifi'){
+               const scifiMovie = await movieFetch('scifi')
+               jumbotronContainer(scifiMovie)
             }
         }
 
         const editButton = function(){
-            window.location.assign("./backoffice.html?id=" + movieId)
+            window.location.assign("./backoffice.html?id=" + movieId + "&category=" + category)
         }
     </script>
 

@@ -118,11 +118,11 @@
         <h6 class="d-inline pl-3">
           Horror
         </h6>
-
       </div>
+      
       <div class="scroller mt-1">
         <div id="horror" class="infinite-row">
-   <!--     <div class="infinite-row-element">
+        <!--<div class="infinite-row-element">
                 <img class=" imagetransition img-fluid" src="assets/media/media0.webp">
             </div>
             <div class="infinite-row-element">
@@ -145,13 +145,13 @@
             </div>
             <div class="infinite-row-element">
               <img class="imagetransition img-fluid" src="assets/media/media21.webp">
-          </div>
-          <div class="infinite-row-element">
-            <img class="imagetransition img-fluid" src="assets/media/media22.webp">
-        </div>
-        <div class="infinite-row-element">
-          <img class="imagetransition img-fluid" src="assets/media/media23.webp">
-      </div> -->
+            </div>
+            <div class="infinite-row-element">
+              <img class="imagetransition img-fluid" src="assets/media/media22.webp">
+            </div>
+            <div class="infinite-row-element">
+              <img class="imagetransition img-fluid" src="assets/media/media23.webp">
+            </div> -->
         </div>
     </div>
   
@@ -370,7 +370,7 @@
             if(horrormovieInfo.length > 0){
             horrormovieInfo.forEach((info)=>{
               horrorContainer.innerHTML += `<div class="infinite-row-element">
-                                                <a href = "./detail.html?id=${info._id}"><img class=" imagetransition img-fluid" src="${info.imageUrl}"></a>
+                                                <a href = "./detail.html?id=${info._id}&category=${info.category}"><img class=" imagetransition img-fluid" src="${info.imageUrl}"></a>
                                             </div>`
             })
           }else{
@@ -384,7 +384,7 @@
           if(romancemovieInfo.length > 0){
             romancemovieInfo.forEach((info)=>{
               romanceContainer.innerHTML += `<div class="infinite-row-element">
-                                                <a href = "./detail.html?id=${info._id}"><img class=" imagetransition img-fluid" src="${info.imageUrl}"></a>
+                                                <a href = "./detail.html?id=${info._id}&category=${info.category}"><img class="imagetransition img-fluid" src="${info.imageUrl}"></a>
                                             </div>`
             })
           }else{
@@ -397,7 +397,7 @@
           if(scifimovieInfo.length > 0){
             scifimovieInfo.forEach((info)=>{
               sciFiContainer.innerHTML += `<div class="infinite-row-element">
-                                                <a href = "./detail.html?id=${info._id}"><img class=" imagetransition img-fluid" src="${info.imageUrl}"></a>
+                                                <a href = "./detail.html?id=${info._id}&category=${info.category}"><img class=" imagetransition img-fluid" src="${info.imageUrl}"></a>
                                             </div>`
             })
           }else{

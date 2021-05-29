@@ -13,6 +13,7 @@
         .submit-button:hover{
             background-color: red;
             border-color: transparent;
+            color: white;
         }
 
         .btn-danger:hover{
@@ -20,8 +21,32 @@
             border-color: transparent;
         }
 
+        .home-btn:hover{
+          background-color: white;
+          color: black;
+          text-decoration: none;
+        }
+
+        .home-btn{
+          background-color: black;
+          border:1px solid grey;
+          color: grey;
+        }
+
         .trash:hover{
             color: red;
+        }
+
+        #detailButton{
+          background-color: black;
+          border:1px solid grey;
+          color: grey;
+          text-decoration: none;
+        }
+
+        #detailButton:hover{
+          background-color: white;
+          color: black;
         }
     </style>
   </head>
@@ -145,9 +170,9 @@
                 />
                 <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
               </div>
-              <div class="d-flex justify-content-around">
+              <div class="d-flex justify-content-between">
             
-                    <button type="submit" class="btn btn-light badge-pill submit-button mt-1">SUBMIT
+                    <button type="submit" class="btn btn-light submit-button mt-1">SUBMIT
                         <div
                     id="spinner"
                     class="spinner-border spinner-border-sm d-none"
@@ -157,10 +182,14 @@
                   </div>
                     </button>
 
+                    <a onclick="detailPage()" id="detailButton" type="button" class="btn  detail-btn btn-light mt-1 d-none">GO BACK</a>
+
+                    <a href ="./home.html" type="button" class="btn  home-btn btn-light mt-1">HOME PAGE</a>
+
                 <button
                 id="delete-btn"
                 type="button"
-                class="btn btn-danger d-none"
+                class="badge-pill btn-danger d-none"
                 onclick="deleteData()">
                 <ion-icon class="trash" name="trash-outline"></ion-icon>
               </button>
@@ -174,44 +203,136 @@
 
       <script>
 
-          const url = "https://striveschool-api.herokuapp.com/api/movies/"
-      
-      const submitForm = async function(event){
-        const key = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGFlNDE0YWNlYWY0ODAwMTVjOTE4NzAiLCJpYXQiOjE2MjIyMDkzNTIsImV4cCI6MTYyMzQxODk1Mn0.2Y6pQr7mBhh-iDxdgL36pX6YZIH3zM05iJueyxH0h8w'
+      const urlParam = new URLSearchParams(window.location.search)
+      let movieId = urlParam.get('id')
+      let categoryName = urlParam.get('category')
+      const url = "https://striveschool-api.herokuapp.com/api/movies/"
+      const key = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGFlNDE0YWNlYWY0ODAwMTVjOTE4NzAiLCJpYXQiOjE2MjIyMDkzNTIsImV4cCI6MTYyMzQxODk1Mn0.2Y6pQr7mBhh-iDxdgL36pX6YZIH3zM05iJueyxH0h8w'
+      console.log(movieId);
+      console.log(categoryName);
+
+      const movieFetch = async (moviecategory ="") =>{
+            try {
+                  const response = await fetch(url + moviecategory, {               
+                  'headers':{
+                     'Authorization': key,
+                     'Content-Type':'application/json'
+                    }
+                    })
+                  const movieData = await response.json()
+                  return movieData
+               }
+               catch(error){
+                   console.log(error);
+               }
+             }
+   
+      const emptyField = {
+        name: "",
+        description: "",
+        category: "",
+        imageUrl: ""
+      }
+       
+       const dataFields = function(par = emptyField){
+          document.getElementById('name').value = par.name
+          document.getElementById('description').value = par.description
+          document.getElementById('category').value = par.category
+          document.getElementById('webadd').value = par.imageUrl
+        }
+
+      window.onload = async ()=>{
+        if(movieId){
+          const deleteButton = document.getElementById('delete-btn')
+          deleteButton.classList.remove('d-none')
+          const detailButton = document.getElementById('detailButton')
+          detailButton.classList.remove('d-none')
+          const h5 = document.getElementById('todo')
+          h5.innerText = " — EDIT"
+          h5.classList.add('text-danger', 'ml-2')          
+          const movies = await movieFetch(categoryName)
+          console.log(movies);
+          const requiredMovie = await movies.find(movie => movie._id.includes(movieId))
+          console.log(requiredMovie);
+          dataFields(requiredMovie)
+        }    
+       }
+
+       const MethodParameter = async function(methodpar, Id="",innerValue ){
+        try {            
+            const response = await fetch(url + Id,{
+              method: methodpar,
+              body: JSON.stringify(innerValue),
+              headers:{
+                "Authorization": key,
+                "Content-Type": "application/json"
+              }
+          })
+          const info = await response.json()
+          return info
+        } 
+          catch (error) {
+              console.log(error);              
+          }
+       }
+
+      const submitForm = async function(event){        
           event.preventDefault()
-          const movieData = {
+          spinnerLoad(true)
+          const movieValues = {
               name : document.getElementById('name').value,
               description: document.getElementById('description').value,
               category: document.getElementById('category').value,
               imageUrl: document.getElementById('webadd').value
           }
-
-          try {
-                const response = await fetch(url,{
-                method:'POST',
-                body: JSON.stringify(movieData),
-                headers:{"Authorization": key,
-                "Content-Type": "application/json"
-                }
-            })
-
-            if(response.ok){
-                const info = await response.json()
-                console.log(info);
-            }
-            else{
-                    if (response.status === 400) {
-              throw new Error("Bad request with status 400");
-            } else if (response.status === 401) {
-              throw new Error("Anauthorized with status 401");
-            } else if (response.status === 404) {
-              throw new Error("Not found with status 404");
-            }
-                }
-              
-          } catch (error) {
-              console.log(error);              
+          console.log(await MethodParameter('PUT', movieId, movieValues));
+          if(movieId){
+            await MethodParameter('PUT', movieId, movieValues)
+            alertMsg('success', 'successfully updated')           
           }
+          else{
+            await MethodParameter('POST', '', movieValues)
+            alertMsg('success', 'successfully added')       
+          }
+            spinnerLoad(false)          
+      }
+
+      const alertMsg = function(type, msg){
+          const alertSpan = document.getElementById('alert')
+          alertSpan.innerHTML = `<div class="alert alert-${type}" role="alert">${msg}</div>`
+          setTimeout(() => {
+          alertSpan.innerHTML = "";
+        }, 2000);
+        }
+
+        const spinnerLoad = function(bool){
+          if(bool){
+            document.getElementById('spinner').classList.remove('d-none')
+          }
+          else{            
+            document.getElementById('spinner').classList.add('d-none')
+          }
+        }
+
+        const deleteData = async function(){
+        
+        try {
+          const response = await fetch(url + movieId, {
+          'method': 'DELETE',
+          'headers': {
+          "Authorization": key
+              } 
+            })
+        if(response.ok){
+            window.location.assign('./home.html')
+                }
+        } catch (error) {
+          console.log(error)          
+        }
+      }
+
+      const detailPage = function(){
+        window.location.assign(`./detail.html?id=${movieId}&category=${categoryName}`)       
       }
 
       </script>
